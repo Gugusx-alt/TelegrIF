@@ -1,0 +1,1 @@
+Rode o Flask para funcionar o banco de dados e o servidor, clique com o botão direito na pasta "tipos_criptografia", abrir no terminal integrado, e no terminal execute o comando: flask run

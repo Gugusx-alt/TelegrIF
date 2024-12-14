@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TelegrIF - Telégrafo</title>
+    <link rel="stylesheet" href="./telegrafo.css">
+</head>
+<body>
+    <header>
+        <!-- Barra de navegação-->
+        <div id="TelegrIF">
+            <h1>TelegrIF</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="../tela_inicio/tela_inicio.html">Sair</a></li>
+                <li><a href="../sobre_nos/sobre_nos.html">Sobre nós</a></li>
+                <li><a href="../tipos_criptografia/tipos_criptografia.html">Tipos de criptografia</a></li>
+                <li><a href="../telegrafo/telegrafo.html">Telégrafo</a></li>
+                <li><a href="../historia/historia.html">História</a></li>
+                <li><a href="../perfil/perfil.html">Perfil</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <!-- Formulários código morse, criptografa e decodifica-->
+        <form id="form1">
+            <input type="text" id="morsedado" placeholder="Digite o código morse">
+            <button type="button" id="decodificar">Decodificar</button>
+            <input type="text" id="ascii" placeholder="Resultado: " readonly> 
+        </form>
+        <form id="form2">
+            <input type="text" id="palavra" placeholder="Digite a palavra">
+            <button type="button" id="Criptografar">Criptografar</button>
+            <input type="text" id="resultado" placeholder="Resultado: "> 
+        </form>
+        
+        <button id="btnHistorico">Histórico</button>
+        <!-- Tela de histórico -->
+        <div id="modalHistorico" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2>Histórico de Transformações</h2>
+                <ul id="historicoLista"></ul>
+            </div>
+        </div>
+    </main>
+    <script src="./telegrafo.js"></script>
+</body>
+</html>

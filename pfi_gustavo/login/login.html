@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TelegrIF - Login</title>
+    <link rel="stylesheet" href="../login/login.css">
+</head>
+<body>
+    <!-- "Header" da página-->
+    <nav class="navbar">
+        <div class="title">TelegrIF</div>
+    </nav>
+    <div class="container">
+        <form id="loginForm">
+            <h2>Login</h2>
+            <div class="input">
+                <input type="email" id="email" placeholder="Email" required>
+            </div>
+            <div class="input">
+                <input type="password" id="password" placeholder="Senha" required>
+            </div>
+            <div class="links">
+                <p>Não tem uma conta? </p><a href="../cadastro/cadastro.html">Cadastre-se.</a>
+            </div>
+            <input id="entrar" type="submit" value="Login">
+        </form>
+    </div>
+
+    
+    <script type="module">
+        import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js';
+        import { getAuth, signInWithEmailAndPassword } from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js';
+
+        // Configuração Firebase
+        const firebaseConfig = {
+            apiKey: "AIzaSyAyQsjojNeohkvd6R05uBZ4GQU-qPFG-ag",
+            authDomain: "telegrif.firebaseapp.com",
+            databaseURL: "https://telegrif-default-rtdb.firebaseio.com",
+            projectId: "telegrif",
+            storageBucket: "telegrif.appspot.com",
+            messagingSenderId: "245580491495",
+            appId: "1:245580491495:web:57c8772de8c74b2750d042",
+            measurementId: "G-WNE8KHN7Q7"
+        };
+
+        // Inicializando Firebase
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+
+        // Função para login
+        const loginForm = document.getElementById('loginForm');
+        loginForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            try {
+                await signInWithEmailAndPassword(auth, email, password);
+                alert('Login realizado com sucesso!');
+                window.location.href = "../sobre_nos/sobre_nos.html"; // Redirecionar para a sobre nps
+            } catch (error) {
+                alert(`Erro no login: ${error.message}`);
+            }
+        });
+    </script>
+</body>
+</html>

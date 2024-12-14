@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TelegrIF - Perfil</title>
+    <link rel="stylesheet" href="./perfil.css">
+</head>
+<body>
+    <header>
+        <!-- Barra de navegação-->
+        <div id="TelegrIF">
+            <h1>TelegrIF</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="../tela_inicio/tela_inicio.html">Sair</a></li>
+                <li><a href="../sobre_nos/sobre_nos.html">Sobre nós</a></li>
+                <li><a href="../tipos_criptografia/tipos_criptografia.html">Tipos de criptografia</a></li>
+                <li><a href="../telegrafo/telegrafo.html">Telégrafo</a></li>
+                <li><a href="../historia/historia.html">História</a></li>
+                <li><a href="#">Perfil</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Perfil formulário-->
+        <section id="profile-section">
+            <h2>Meu Perfil</h2>
+            <div id="profile-container">
+                <img id="profile-photo" src="./perfil.jpg" alt="Foto de perfil fixa">
+                <form id="profile-form">
+                    <label for="username">Nome de usuário:</label>
+                    <input type="text" id="username" placeholder="Digite seu nome de usuário" required>
+                    <label for="about">Sobre mim:</label>
+                    <textarea id="about" placeholder="Escreva sobre você" required></textarea>
+                    <button type="submit">Salvar</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    
+    <script type="module">
+        import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js';
+        import { getAuth } from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js';
+        import { getDatabase, ref, set, get } from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-database.js';
+    
+        // Configuração do Firebase
+        const firebaseConfig = {
+            apiKey: "AIzaSyAyQsjojNeohkvd6R05uBZ4GQU-qPFG-ag",
+            authDomain: "telegrif.firebaseapp.com",
+            databaseURL: "https://telegrif-default-rtdb.firebaseio.com",
+            projectId: "telegrif",
+            storageBucket: "telegrif.appspot.com",
+            messagingSenderId: "245580491495",
+            appId: "1:245580491495:web:57c8772de8c74b2750d042",
+            measurementId: "G-WNE8KHN7Q7"
+        };
+    
+        // Inicializando o Firebase
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const database = getDatabase(app);
+    
+        // Função para verificar se o usuário está autenticado
+        auth.onAuthStateChanged((user) => {
+            if (user) {
+                const userId = user.uid;
+                const usernameInput = document.getElementById('username');
+                const aboutInput = document.getElementById('about');
+                const profileForm = document.getElementById('profile-form');
+    
+                
+                const profileRef = ref(database, 'users/' + userId);
+                get(profileRef).then((snapshot) => {
+                    if (snapshot.exists()) {
+                        const profileData = snapshot.val();
+                        usernameInput.value = profileData.username || '';
+                        aboutInput.value = profileData.about || '';
+                    }
+                }).catch((error) => {
+                    alert('Erro ao carregar perfil: ' + error.message);
+                });
+    
+                // Salvar os dados do perfil
+                profileForm.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    const username = usernameInput.value;
+                    const about = aboutInput.value;
+    
+                    
+                    set(ref(database, 'users/' + userId), {
+                        username: username,
+                        about: about
+                    })
+                    .then(() => {
+                        alert('Perfil atualizado com sucesso!');
+                        window.location.href = './perfil_usuário.html'; // Redireciona de volta para a página de perfil
+                    })
+                    .catch((error) => {
+                        alert('Erro ao salvar perfil: ' + error.message);
+                    });
+                });
+    
+            } else {
+                alert('Usuário não autenticado!');
+                window.location.href = "../login/login.html"; // Redireciona de volta para a tela de login
+            }
+        });
+    </script>
+    

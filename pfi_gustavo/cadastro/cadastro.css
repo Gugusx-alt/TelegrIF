@@ -1,0 +1,90 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background-image: url('../imagens/criptografia.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    color: white;
+  }
+  
+  /* Navbar */
+  .navbar {
+    background-color: #333;
+    padding: 15px;
+    text-align: left;
+  }
+  
+ 
+  
+  /* Container */
+  .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  .formulario {
+    background-color: rgba(90, 112, 136, 0.9);
+    padding: 15px 110px;
+    border-radius: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    width: 350px;
+    text-align: center;
+  }
+  
+  /* Form */
+  h2 {
+    margin-bottom: 20px;
+  }
+  
+  .form_input {
+    margin-bottom: 15px;
+    border-radius: 50px;
+  }
+  
+  .form_input input {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+    outline: none;
+  }
+  
+  button {
+    background-color: #3b3b46;
+    color: white;
+    border: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    width: 100%;
+  }
+  
+  button:hover {
+    background-color: transparent;
+    color: #00ffcb;
+    box-shadow: 0 0 60 rgba(0, 255, 203, 0.5);
+    border: 2px solid #00ffcb;
+  }
+  
+  /* Login Link */
+  .login {
+    margin-top: 10px;
+    font-size: 14px;
+  }
+  
+  .login a {
+    color: white;
+    text-decoration: none;
+  }
+  
+  .login a:hover {
+    text-decoration: underline;
+  }
+  

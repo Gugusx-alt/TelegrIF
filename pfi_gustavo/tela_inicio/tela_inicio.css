@@ -1,0 +1,79 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+body {
+    
+    font-family: 'Poppins', sans-serif;
+    background-color: #3b3b46;
+    color: white;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: top;
+    height: 100vh;
+    padding: 20px; 
+    padding-bottom: 5px;
+    
+    
+}
+
+h1 {
+    text-align: left;
+}
+
+h2  {
+    position: absolute;
+    top: 15%;
+    left: 0%;
+    flex: 1;
+    max-width: 55%;
+    line-height: 1.5;
+    margin-bottom: 20px;
+    font-size: 65px;
+    color: white;
+    line-height: 1.4;
+    margin-left: 20px;
+
+}
+
+h2, img {
+    display: inline-block; /* Faz o h2 e a imagem ficarem lado a lado */
+    vertical-align: middle;
+    border-radius: 20px; /* Alinha verticalmente ao meio */
+}
+
+img {
+    position: absolute;
+    top: 15%;
+    right: 0%;
+    max-width: 50%;
+    max-width: 600px; /* Aumenta a largura máxima */
+    width: 100%; /* Garante que a imagem seja responsiva */
+    height: 400px;
+    margin-right: 20px;
+}
+
+button {
+    position: absolute;
+    top: 80%;
+    left: 8%;
+    transform: translate(-50%, -50%);
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    width: 200px;
+    color: white;
+    background-color: #3b3b46;
+    border: 2px solid white;
+    transition: background-color 0.3s ease, color 0.3s ease;
+
+}
+
+button:hover {
+    background: transparent;
+    color: #00ffcb;
+    box-shadow: 0 0 60 rgba(0, 255, 203, 0.5);
+    border: 2px solid #00ffcb;
+
+}

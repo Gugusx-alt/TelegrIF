@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TelegrIF - Cadastro</title>
+  <link rel="stylesheet" href="cadastro.css">
+</head>
+<body>
+    <nav class="navbar">
+      <!--"Header" da página-->
+        <div class="title">TelegrIF</div>
+    </nav>
+  <div class="container">
+    <!-- Formulaário de cadastro -->
+    <div class="formulario">
+      <h2>Cadastro</h2>
+      <form>
+        <div class="form_input">
+          <input type="text" id="name" placeholder="Nome" required>
+        </div>
+        <div class="form_input">
+          <input type="email" id="email" placeholder="Email" required>
+        </div>
+        <div class="form_input">
+          <input type="password" id="password" placeholder="Senha" required>
+        </div>
+        <div class="form_input">
+          <input type="password" id="confirmPassword" placeholder="Confirme sua Senha" required>
+        </div>
+        <div class="form_input">
+          <button type="submit" id="registerBtn">Cadastrar</button>
+        </div>
+        <div class="login">
+          <span>Já tem uma conta?</span>
+          <a href="../login/login.html">Faça Login</a>
+        </div>
+      </form>
+    </div>
+  </div>
+
+ 
+  <script type="module">
+    import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js';
+    import { getAuth, createUserWithEmailAndPassword } from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js';
+
+    //configuração do Firebase
+    const firebaseConfig = {
+      apiKey: "AIzaSyAyQsjojNeohkvd6R05uBZ4GQU-qPFG-ag",
+      authDomain: "telegrif.firebaseapp.com",
+      databaseURL: "https://telegrif-default-rtdb.firebaseio.com",
+      projectId: "telegrif",
+      storageBucket: "telegrif.appspot.com",
+      messagingSenderId: "245580491495",
+      appId: "1:245580491495:web:57c8772de8c74b2750d042",
+      measurementId: "G-WNE8KHN7Q7"
+    };
+
+    // Inicializando o Firebase
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+
+    // Função para registrar um novo usuário
+    const registerBtn = document.getElementById('registerBtn');
+    registerBtn.addEventListener('click', async (e) => {
+      e.preventDefault();
+      
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+      const confirmPassword = document.getElementById('confirmPassword').value;
+      
+      // Verifique se as senhas coincidem
+      if (password !== confirmPassword) {
+        alert("As senhas não coincidem!");
+        return;
+      }
+
+      try {
+        await createUserWithEmailAndPassword(auth, email, password);
+        alert("Usuário criado com sucesso!");
+        window.location.href = "../login/login.html"; // Redireciona para a página de login
+      } catch (error) {
+        alert(`Erro: ${error.message}`);
+      }
+    });
+  </script>
+</body>
+</html>

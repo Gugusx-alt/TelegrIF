@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil - TelegrIF</title>
+    <link rel="stylesheet" href="./perfil.css">
+</head>
+<body>
+    <header>
+    <!-- Barra de navegação-->
+        <div id="TelegrIF">
+            <h1>TelegrIF</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="../tela_inicio/tela_inicio.html">Sair</a></li>
+                <li><a href="../sobre_nos/sobre_nos.html">Sobre nós</a></li>
+                <li><a href="../tipos_criptografia/tipos_criptografia.html">Tipos de criptografia</a></li>
+                <li><a href="../telegrafo/telegrafo.html">Telégrafo</a></li>
+                <li><a href="../historia/historia.html">História</a></li>
+                <li><a href="#">Perfil</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Perfil formulário-->
+        <section id="profile-section">
+            <h2>Meu Perfil</h2>
+            <div id="profile-container">
+                <img id="profile-photo" src="./perfil.jpg" alt="Foto de perfil fixa">
+                <div id="profile-info">
+                    <h3 id="profile-username">Nome não disponível</h3>
+                    <p id="profile-about">Informações não disponíveis</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- importações do firebase -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-analytics.js"></script>
+
+    
+    <script>
+        // Configuração do Firebase
+        const firebaseConfig = {
+            apiKey: "AIzaSyAyQsjojNeohkvd6R05uBZ4GQU-qPFG-ag",
+            authDomain: "telegrif.firebaseapp.com",
+            databaseURL: "https://telegrif-default-rtdb.firebaseio.com",
+            projectId: "telegrif",
+            storageBucket: "telegrif.appspot.com",
+            messagingSenderId: "245580491495",
+            appId: "1:245580491495:web:57c8772de8c74b2750d042",
+            measurementId: "G-WNE8KHN7Q7"
+        };
+
+        // Inicializa o Firebase
+        const app = firebase.initializeApp(firebaseConfig);
+        const db = firebase.database(app);
+        const auth = firebase.auth(app);
+
+        // Função para carregar os dados do perfil
+        function loadProfileData(userId) {
+            const userRef = db.ref('users/' + userId);
+            userRef.get().then((snapshot) => {
+                if (snapshot.exists()) {
+                    const userData = snapshot.val();
+                    console.log("Dados recuperados:", userData); 
+                   
+                    document.getElementById('profile-username').textContent = userData.username || "Nome não disponível";
+                    document.getElementById('profile-about').textContent = userData.about || "Informações não disponíveis";
+                } else {
+                    console.log("Dados não encontrados!");
+                    document.getElementById('profile-username').textContent = "Nome não disponível";
+                    document.getElementById('profile-about').textContent = "Informações não disponíveis";
+                }
+            }).catch((error) => {
+                console.error("Erro ao recuperar os dados: ", error);
+                document.getElementById('profile-username').textContent = "Nome não disponível";
+                document.getElementById('profile-about').textContent = "Informações não disponíveis";
+            });
+        }
+
+        // Verificar se o usuário está logado
+        window.onload = function() {
+            firebase.auth().onAuthStateChanged(function(user) {
+                if (user) {
+                    console.log("Usuário logado:", user.uid);
+                    
+                    loadProfileData(user.uid);
+                } else {
+                    console.log("Usuário não logado");
+                    document.getElementById('profile-username').textContent = "Nome não disponível";
+                    document.getElementById('profile-about').textContent = "Informações não disponíveis";
+                }
+            });
+        };
+    </script>
+</body>
+</html>

@@ -1,0 +1,199 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+body {
+    background-color: #e6e6fa;
+    margin: 0;
+    padding: 0;
+    color: black;
+    font-family: 'Poppins', sans-serif;
+}
+
+header {
+    background-color: #1B1F38;
+    color: white;
+    padding: 0px;
+    width: 100%;
+}
+
+header h1 {
+    margin: 0;
+    margin-bottom: 10px;
+    color: white;
+    padding: 10px 20px; 
+    display: inline-block; 
+}
+
+header nav {
+    display: inline-block;
+}
+
+header nav ul {
+    display: flex;
+    justify-content: flex-end; 
+    align-items: center; 
+    padding: 10px 20px;
+    list-style: none;
+}
+
+header nav ul li {
+    margin-right: 20px; /* Espaço entre os itens da navbar */
+}
+
+header nav ul li a {
+    color: white;
+    text-decoration: none;
+    position: relative; 
+}
+
+header nav ul li a::after {
+    content: ''; 
+    display: block;
+    width: 100%; 
+    height: 2px; 
+    background: white; 
+    position: absolute;
+    left: 0;
+    bottom: -5px; 
+    transform: scaleX(0); 
+    transition: transform 0.3s ease; 
+}
+
+header nav ul li a:hover::after {
+    transform: scaleX(1); 
+}
+
+/* Botão adicionar publicação */
+#btn-add-pub {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    font-size: 24px;
+    background-color: #333;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100; 
+    
+}
+
+.modal-content {
+    background: #fefefe;
+    padding: 50px;
+    border-radius: 12px;
+    width: 100%;
+    max-width: 500px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2); 
+    position: relative;
+    
+    
+}
+
+.modal-content .close {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    font-size: 20px;
+    color: #333; /* Cor mais suave */
+    cursor: pointer;
+    background: #eee; /* Botão com fundo para destaque */
+    border: none;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background 0.3s ease, color 0.3s ease;
+}
+
+.modal-content .close:hover {
+    background: #ff4d4d; /* Destaque ao passar o mouse */
+    color: white;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+#form-publicacao {
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Espaçamento entre os elementos */
+    width: 100%;
+}
+
+#form-publicacao label {
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+#form-publicacao input[type="text"],
+#form-publicacao input[type="email"],
+#form-publicacao textarea {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    outline: none;
+    transition: border 0.3s ease;
+}
+
+#form-publicacao input[type="text"]:focus,
+#form-publicacao input[type="email"]:focus,
+#form-publicacao textarea:focus {
+    border-color: #007BFF; /* Cor de destaque ao focar */
+    box-shadow: 0 0 4px rgba(0, 123, 255, 0.5);
+}
+
+#form-publicacao textarea {
+    resize: none; /* Impede redimensionamento */
+    height: 120px; /* Altura padrão */
+}
+
+#form-publicacao button {
+    padding: 12px;
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+    background-color: #007BFF;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+#form-publicacao button:hover {
+    background-color: #0056b3;
+}
+
+/* Adicione uma mensagem de feedback estilosa */
+#form-publicacao .feedback {
+    font-size: 14px;
+    color: #d9534f; /* Vermelho para erros */
+    margin-top: -10px;
+}
